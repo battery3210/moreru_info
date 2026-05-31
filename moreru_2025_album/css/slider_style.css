@@ -1,0 +1,153 @@
+.swiper {
+    margin-top: 100px;
+}
+
+.swiper-wrapper {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    /* height: 500px; */
+}
+
+.swiper-slide{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 500px;
+    /* background: coral; */
+}
+
+.swiper-slide img {
+    /* 25% に縮小 */
+    /* transform: scale(0.5);  */
+    /* transform-origin: center; 縮小の基準を中央に設定 */
+    width: 100%;
+    display: block; 
+}
+
+.swiper-slide-prev {
+    transform: scale(1);
+    transition: transform .3s;
+}
+
+.swiper-slide-next {
+    transform: scale(1);
+    transition: transform .3s;
+}
+  .swiper-slide-active {
+    transform: scale(1.6);
+    margin-left: 0px;
+}
+
+/* .slide1 {
+    transform: scale(1.2);
+} */
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    content: none;
+}
+
+.swiper-button-prev {
+    top: 10%;
+    left: 1100px;
+    background-image: url('../image/left-arrow.png'); /* 左矢印画像を設定 */
+    background-size: contain; /* 画像全体を要素内に収める */
+    background-repeat: no-repeat; /* 背景画像の繰り返しを防ぐ */
+    background-position: center; /* 背景画像を中央に配置 */
+    width: 64px; /* ボタンの幅 */
+    height: 64px; /* ボタンの高さ */
+}
+
+.swiper-pagination {
+    margin-top: -50px;
+}
+
+/* 右矢印のボタン */
+.swiper-button-next {
+    top: 10%;
+    right: 100px;
+    background-image: url('../image/right-arrow.png'); /* 右矢印画像を設定 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 64px;
+    height: 64px;
+}
+
+@media (max-width: 768px) {
+
+    .swiper {
+        margin-top: 0px;
+    }
+
+    .swiper-wrapper {
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+
+    .swiper-slide{
+        width: 25%;
+        height: 25%;
+        text-align: center;
+        /* line-height: 500px; */
+        /* background: coral; */
+    }
+
+    .swiper-button-prev {
+        top: 50%;
+        left: 10px;
+        transform: scale(0.7);
+    }
+    
+    /* 右矢印のボタン */
+    .swiper-button-next {
+        top: 50%;
+        right: 10px;
+        transform: scale(0.7);
+    }
+
+    .swiper-slide img {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .swiper-slide-active {
+        transform: scale(1);
+        /* margin-left: 70px; */
+    }
+    
+    /* .swiper-slide-prev {
+        transform: scale(0.5);
+    }
+    
+    .swiper-slide-next {
+        transform: scale(0.5);
+    }
+      .swiper-slide-active {
+        transform: scale(0.5);
+    } */
+}
+
+/* .swiper-slide:nth-child(1){
+    background: cornflowerblue;
+}
+
+.swiper-slide:nth-child(2){
+    background: rgb(26, 214, 105);
+}
+
+.swiper-slide:nth-child(3){
+    background: rgb(237, 100, 175);
+}
+
+.swiper-slide:nth-child(4) {
+    background: rgb(243, 152, 16);
+}
+
+.swiper-slide:nth-child(5) {
+    background: rgb(110, 10, 10);
+}
+
+.swiper-slide:nth-child(6) {
+    background: rgb(169, 175, 171);
+} */

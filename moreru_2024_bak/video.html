@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./js/slick.css">
+    <link rel="stylesheet" type="text/css" href="./js/slick-theme.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- 通常のファビコン -->
+    <link rel="icon" href="./image/moreru_favicon_16.png" sizes="16x16">
+    <link rel="icon" href="./image/moreru_favicon_32.png" sizes="32x32">
+
+    <!-- Appleデバイス用 -->
+    <link rel="apple-touch-icon" href="./image/moreru_favicon_180.png">
+    <title>moreru web</title>
+</head>
+<body>
+    <header class="mobile-header">
+        <div class="menu-icon" id="menu-icon">
+            <div class="cross"></div>
+            <div class="cross_bottom"></div>            
+          <p class="menu-text">menu</p>
+        </div>
+        <!-- <nav class="icon-nav">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-shopping-cart"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </nav> -->
+    </header>
+    <!-- <div class="buy_tickets">BUY TICKETS <span class="tickets_arrow">→</span> </div> -->
+
+    <div class="slide-menu" id="slide-menu">
+        <ul>
+            <li class="li_text"><a href="./index.html">TOP</a></li>
+            <!-- <li class="li_text"><a href="./second.html">2ndFile</a></li> -->
+            <!-- <li class="li_text"><a href="./third11.html">3rdFile</a></li> -->
+            <!-- <li class="li_text"><a href="./video.html">Teaser</a></li> -->
+            <!-- <li class="li_text"><a href="">テストメニュー5</a></li> -->
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="scroll_text">           
+            <span>殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ </span>
+            <span>殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ </span>
+        </div>
+
+        <div class="youtube">
+            <iframe  src="https://www.youtube.com/embed/t1gWD8NRkmo" title="death 2024 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	        <br><br>
+        </div>
+
+        <div class="scroll_text2" dir="rtl">           
+            <span>殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ </span>
+            <span>殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ 殺すぞ </span>
+        </div>
+
+    </div>
+
+    <script src="menu-toggle.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/slick.min.js"></script>
+
+
+<script>
+    $('.scroll_text').slick({
+        autoplay:true,
+        autoplaySpeed:0,
+        speed: 10000,
+        dots:false,
+        arrows:false,
+        infinite: true,
+        centerMode: false,
+        variableWidth: true, 
+        cssEase: 'linear',
+        pauseOnHover: false
+        // rtl: true
+    });
+</script>
+
+<script>
+    $('.scroll_text2').slick({
+        autoplay:true,
+        autoplaySpeed:0,
+        speed: 10000,
+        dots:false,
+        arrows:false,
+        infinite: true,
+        centerMode: false,
+        variableWidth: true, 
+        cssEase: 'linear',
+        pauseOnHover: false,
+        rtl: true
+    });
+</script>
+</body>
+</html>

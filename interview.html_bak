@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moreru 2025</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="stylesheet" href="https://use.typekit.net/jpl8skz.css">
+    <link rel="stylesheet" href="./destyle.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/slider_style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./image/moreru_favicon_16.png" sizes="16x16">
+    <link rel="icon" href="./image/moreru_favicon_32.png" sizes="32x32">
+    <!-- AdobeFontsを使えるようにする↓↓ -->
+    <script>
+        (function(d) {
+          var config = {
+            kitId: 'kes5zcq',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+      </script>
+</head>
+<body>
+
+    <!-- <div class="loading">
+        <div></div>
+    </div> -->
+
+    <div class="container">
+        <header class="header">
+            <div class="header__inner">
+                <!-- <h1 class="header__logo">
+                    <a class="header__link" href=""><img class="header__image" src="./image/logo.png" alt="サイトのロゴ"></a>
+                </h1> -->
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__nav-items">
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="./top.html">
+                                <div class="header__nav-li--eng">top</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="interview.html">
+                                <div class="header__nav-li--eng">interview</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="live_schedule.html">
+                                <div class="header__nav-li--eng">live schedule</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="connect.html">
+                                <div class="header__nav-li--eng">connect</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item header__nav-item--img">
+                            <a class="header__nav-link" href="./">
+                                <img src="image/main_bg.png" alt="メニュー画像">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section class="top">
+            <div class="content-wrapper">
+                <div id="main-content">
+                    <div class="background"></div> <!-- 背景画像専用の要素 -->
+                    <div class="main_wrapper">
+                        <div class="content-name">
+                            <!-- interview -->
+                             未完成記念インタビュー
+                        </div>
+                        <div class="interview_body">
+
+
+
+<br><br>
+
+ついにその全貌が明らかとなったmoreruの4th Album "ぼぼくくととききみみだだけけののせせかかいい"、 なんとまだ未完成！<br>
+やばい！果たして10月22日に間に合うのか！？制作に集中したほうがいいと思うのだが……。インタビューしろとのことなので、Vo.夢咲みちるにインタビュー！<br>
+
+(<span class="interviewer-name"> interview.text by ANAL)<br><br></span>
+
+<span class="interviewer-talk">― ついに解禁となった4th albumですが、まだ完成してないとのことで、調子どうですか？今何をやってるんですか？<br><br></span>
+
+バリバリガチミックス中です。音は録り終わって、シンセ足したり、とにかくはやく終わらせたい。もうめんどい。自分の声聴きたくない。死にたい。<br><br></span> 
+
+<span class="interviewer-talk">― 次はどんなアルバムになるんですかと質問しろとのことです。<br><br></span>
+
+やっぱね、自分は嫌いなんですよ、虫の音楽が。虫の音楽って、あると思いますよ！光の点滅、謎の英詩ないし鈴虫の繁殖するための鳴き声と同じ事しか言ってないジャップの恋文駄文の類ね、これに群がりたがるビッチ共と勃起男児共、髭面業界人やらうさんくせえハゲ、多すぎでしょ！？って話。こんなものが世の中には増えすぎたんだよ。これら完全に虫の音楽だし即死系ね、縦画面で歌詞出てる系のショート動画をバズらせるために作曲してる感ね、全部うざいね、お前ら虫だったのかよと、お前からはやく音楽を取り上げて、よさこいソーランだけ与えたいよ、バカコラ、踊っとけや、こんな虫の音楽ばっかでしょ、かかってこいよ、昆虫ゼリーしか食うなよ！虫の政治と虫たちの闘争だよ、ほんとさ、俺が好きで、信じている音楽ってのはさぁ、やっぱ……、神と獣の音楽だなぁ。 (うっとり)<br><br>
+
+<span class="interviewer-talk">― で、次のアルバムどんな感じなんですか？<br><br></span>
+
+やたら打ち上げしたがるやつのね、週末に酒飲んで、勢いに任せて無根拠無意味な熱い話してシャワー浴びた気になってサッパリして平日をこなしていくための音楽ではない。さらにコンビニバイトも肉体労働もしたこともない文化資本に恵まれた23区生まれ温室育ちのぬるい平和思想でもない。MDMA食いすぎたDJがかけてイデオロギー・ギャルが爆踊りする音楽じゃない。この音楽はそれと言えない。否定神学かもしれない。わたしたちは神だったのかもしれません。とりま、朝から100円ローソンのストゼロ喰らってアルトーの詩を絶叫している俺だけの闘争があるってことだ！水のゲロを吐きまくれ、胃液の中にしか真実はない！もう全員バカ、バカ！バカバカバカバカ、バカー泣<br><br>
+
+<span class="interviewer-talk">― 発表されたジャケは今までのぐちゃぐちゃで情報量が多い感じとは打って変わって、真っ白な空間にロゴが小さくある、という感じだけど、これはなぜ？<br><br></span>
+
+もう最近は完全にブチ上がってるよ、最悪すぎて、逆にね。厨二病だからiPhoneの色設定をダークモードにしてて、歌詞やその他の諸作文をメモに打つ際、黒い画面に白い文字で打ち込むんです。自分はこれが天命なので、もはや画面を真っ白にすることの脅迫的な観念があるのと、中学生の闇垢による黒画像みたいなかまちょアートを続けていたら脱領土による完全な光垢ができた、みたいなニュアンスで伝わる？<br><br>
+
+<span class="interviewer-talk">― 先行配信されている曲には歌詞に絶滅とか人類などのスケールの大きい言葉が出てくる反面、西八王子とか西東京とか自分の地元も歌詞も出てくるっていうのは意識して書いてる？<br><br></span>
+
+暗黒の精神と宇宙に西八王子の電柱とか犬の糞とかについての作文を白い鉛筆で書きまくってピカピカさせたよ！ジャケの説明にもなりますね。俺みたいなカスに音楽と政治が居場所を与えるかよ。もうオナニーと軽犯罪しかやることねえっつーの。逆張りで生きてるだけだからこのくらい許せ。西八王子の電柱も犬の散歩も全部それの比喩としてありますね。あ、スマホ投げてごめんね。でもスマホのカメラは銃口だよ。共同体の逸脱者を、犯罪者を、全裸者を抹殺する現代の銃だよ。銃口をむけてることも同時に忘れないでほしいね。ルールとかまじfuckなんで今後も何も禁止しないけどね。暴力も批評性に欠けていたと反省している。今後は醤油マヨをかけて美味しくいただく、パスワードを変更してお返しする、パン粉をつけで油で揚げてスマホカツ丼として美味しくいただく、インスタにちんぽのストーリー投稿して垢BANされた上でお返しする、あえて何もつけずに素材の味で美味しくいただく、とかにするわ。<br><br>
+
+<span class="interviewer-talk">― 前にメンバーから聞いたんだけど、1stはエヴァ、2ndがNARUTO、3rdは進撃の巨人ってアルバム毎に影響を受けたアニメがあるって聞いたけど、4枚目はなんなのかっていう……。<br><br></span>
+
+今回はZガンダムと楳図かずおの14歳です。ジークアクスは宗教戦争になるから無言でよろ。カミーユは最終的に発狂してて偉いなあと思ったよ。自己認識の極端な発達で、世界、宇宙の深淵を覗き込める知能というアイテムを持ったものの、人間の脳はこの残酷な真実を受け止めれるほどデカくない、だから発狂するしかなくなり、死ぬしかなくなり、殺すしかなくなるね。もうダメだよ、人類が全体的にダメだ、人類という種が原理的に何かダメなんだ。ギガンテウスオオツノジカという種は繁殖のために角をデカくしすぎた結果、自分の角の自重に耐えきれなくて絶滅したんだとよ。他人事じゃないだろぉ？<br><br>
+
+<span class="interviewer-talk">― あと発表された曲のタイトルがなんか、死とか他殺だの虐殺だの戦争だのとても不穏なんですけど、なんでそんなこと言うんですか?<br><br></span>
+
+俺には死にたいと言う回路がない。死がまずある。生活を超える死はない。だから生を欲望している。存在論的にメンヘラなので超越論的な死にたさを考えるしか生き延びられる手段はない。俺が自己中心的に死にたいというよりも前に、死にたい世界がなぜか存在している。これに向き合う。これを考える。神の存在が内部から浮かびあがるんだよ。さらにラーメンとかハンバーガーとか食いまくって俺の獣性に合流させる。神とラーメンの間にあるのが文学や言語で、ブラストビートであるので、それを使って世界を破壊するんだよ。本当全体的に嫌になったから個人的に核武装して個人的に世界を滅ぼすことになった。本当みんなには申し訳ないけど、これはもう仕方がない。<br><br>
+
+……まあともかく、野暮だよこれは。もうやめよう。聴けばわかる。わかるはず。わからなかったら、わからなかったお前が一方的に悪いからね。わかれよ。おばあちゃんにも聴かせろ。おばあちゃんがわからなかったらそのばばあは使い物にならないので山に捨てろ。じゃあ10月22日よろしくね。あとはスタジオワンに神を降ろしてノイズでぶちのめすだけだワン<br><br>
+
+                        </div>
+                        <div class="interview-img">
+                            <img src="./image/a-sha.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- トップに戻るボタン -->
+    <div id="backToTop" class="material-symbols-outlined md-18 back-to-top">
+        arrow_upward
+    </div>
+
+    <!-- <script src="./script.js"></script> -->
+     <script>
+     // JavaScriptで5秒後に動画を非表示に 
+        setTimeout(function () {
+            
+            const mainContent = document.getElementById('main-content');
+            const contentWrapper = document.querySelector('#main-content .main_wrapper');
+            const background = document.querySelector('#main-content .background');
+
+
+            // フワッと表示開始
+            requestAnimationFrame(() => {
+                mainContent.classList.add('show');   
+                contentWrapper.classList.add('show');
+                background.classList.add('show');
+                // document.getElementById('main-content').style.pointerEvents = 'auto';
+            });
+        }, 500); // 
+    </script>
+    <script src="./script.js"></script>
+
+
+</body>
+</html>

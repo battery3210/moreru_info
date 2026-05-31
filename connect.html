@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moreru Official Website</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jpl8skz.css">
+    <link rel="stylesheet" href="./destyle.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/slider_style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./image/moreru_favicon_16.png" sizes="16x16">
+    <link rel="icon" href="./image/moreru_favicon_32.png" sizes="32x32">
+    <!-- AdobeFontsを使えるようにする↓↓ -->
+    <script>
+        (function(d) {
+          var config = {
+            kitId: 'kes5zcq',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+      </script>
+</head>
+<body class="page-top">
+
+    <!-- <div class="loading">
+        <div></div>
+    </div> -->
+
+    <div class="container">
+        <header class="header">
+            <div class="header__inner">
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__nav-items">
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="./top.html">
+                                <div class="header__nav-li--eng">top</div>
+                            </a>
+                        </li>
+                        <!-- <li class="header__nav-item">
+                            <a class="header__nav-link" href="interview.html">
+                                <div class="header__nav-li--eng">interview</div>
+                            </a>
+                        </li> -->
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="live_schedule.php">
+                                <div class="header__nav-li--eng">live schedule</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="connect.html">
+                                <div class="header__nav-li--eng">connect</div>
+                            </a>
+                        </li>
+                        <li class="header__nav-item header__nav-item--img">
+                            <a class="header__nav-link" href="./">
+                                <img src="image/main_bg.png" alt="メニュー画像">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section class="top">
+            <div class="content-wrapper">
+                <div id="main-content">
+                    <div class="background"></div> <!-- 背景画像専用の要素 -->
+                    <div class="main_wrapper">
+                        <div class="link-container">
+                            <div class="connect-title">Contact:<br>
+                            <a href="mailto:morerumadcity@gmail.com">morerumadcity@gmail.com</a>
+                            </div>
+                            <div class="connect-title">Online store (for Japan):<br>
+                            <a href="https://moreru.thebase.in/" target="_blank">https://moreru.thebase.in/</a>
+                            </div>
+                            <div class="connect-title">Online store (for overseas):<br>
+                            <a href="https://moreru.bandcamp.com/music" target="_blank">https://moreru.bandcamp.com/music</a>
+                            </div>
+                            <ul class="socials">
+                            <li><a href="https://www.instagram.com/moreru_official?igsh=aWViOXB6aWpwOThn" aria-label="Instagram"  target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="https://x.com/moreru__?t=yyPhFGN1pRgFzrdBXv9mKA&s=09" aria-label="X"  target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                            <li><a href="https://youtube.com/@moreru3145" aria-label="YouTube"  target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="https://music.apple.com/jp/artist/moreru/1475323724?ls" aria-label="Apple Music"  target="_blank"><i class="fa-brands fa-apple"></i></a></li>
+                            <li><a href="https://open.spotify.com/artist/6YbQDmSNnb9RxI3NMk4BN4?si=l9AHsaNLRpKDkrWJat38Ww" aria-label="Spotify"  target="_blank"><i class="fa-brands fa-spotify"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- トップに戻るボタン -->
+    <div id="backToTop" class="material-symbols-outlined md-18 back-to-top">
+        arrow_upward
+    </div>
+    <script>
+    // JavaScriptで5秒後に動画を非表示に 
+        setTimeout(function () {
+                  
+                    const mainContent = document.getElementById('main-content');
+                    const contentWrapper = document.querySelector('#main-content .main_wrapper');
+                    const background = document.querySelector('#main-content .background'); // ← 背景を取得
+
+                    
+
+                    // フワッと表示開始
+                    requestAnimationFrame(() => {
+                        mainContent.classList.add('show');   
+                        contentWrapper.classList.add('show');
+                        background.classList.add('show'); 
+                        // document.getElementById('main-content').style.pointerEvents = 'auto';
+                    });
+        }, 1000); // 10秒
+    </script>
+
+    <!-- <script>
+        // ページが読み込まれた後、フワッと表示
+        window.addEventListener('load', function() {
+        const mainContent = document.getElementById('main-content');
+        
+        // 一瞬待ってから表示させる（自然な演出のため）
+        setTimeout(() => {
+            mainContent.style.display = 'flex'; // flex表示に変更
+            requestAnimationFrame(() => {
+            mainContent.classList.add('show'); // フワッとアニメーション開始
+            });
+        }, 300); // 300ms後に表示（任意に調整可）
+        });
+    </script> -->
+
+    <script src="./script.js"></script>
+
+</body>
+</html>

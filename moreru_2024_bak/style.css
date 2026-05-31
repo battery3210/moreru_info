@@ -1,0 +1,797 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: rgb(14, 13, 13); */
+    background-color: black;
+    font-family: 'Libre Baskerville', "Times New Roman", 'Noto Serif JP', "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    overflow-x: hidden;
+}
+
+.null_body {
+  background-color: #050505;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ハンバーガーメニュー */
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .mobile-header {
+      position: fixed;
+      top:0;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 30px 10px 10px;
+      background-color: transparent;
+      z-index: 2000;
+    }
+    
+    .menu-icon {
+      margin: 20px;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: red;
+      cursor: pointer; 
+      /* position: relative; */
+      /* background-color: black; */
+    }
+  
+  .cross, .cross_bottom {
+      width: 25px; 
+      height: 1px; 
+      background-color: #ff0000; 
+      transition: all 0.3s ease; 
+    }
+  
+    .cross {
+      transform: translateY(1px);
+    }
+  
+    .cross_bottom {
+      transform: rotate(90deg) translateY(0px);
+    }
+  
+    .menu-icon.active .cross {
+      transform: rotate(-45deg) translateY(1px) ;
+    }
+  
+    .menu-icon.active .cross_bottom {
+      transform: rotate(45deg) ;
+    }
+  
+    .menu-icon p {
+      margin-top: 15px;
+      font-size: 12px;
+      color: red;
+    }
+    
+    .icon-nav {
+      display: flex;
+      gap: 15px;
+      padding-right: 30px;
+    }
+    
+    .icon-nav a i {
+      font-size: 24px;
+      color: red;
+    }
+
+
+    /* スライドメニューのスタイル */
+
+  .slide-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 40%;
+    /* ヘッダーを除いた部分をメニューに使用 */
+    height: calc(100% - 0px); 
+    
+    background-color: rgba(0, 0, 0, 0.8); /* 白色で少し透明に */
+    opacity: 0; /* 初期状態で透明 */
+    /* transition:  left 0.6s ease, opacity 0.8s ease; スライドしながら透明度も変化 */
+    transition:   opacity 0.8s ease;   
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .slide-menu.active {
+    left: 0;
+    opacity: 1;
+    /* display: block; */
+  }
+
+  .slide-menu.closing {
+    opacity: 0;
+    transition: opacity 0.8s ease ;
+  }
+
+  .slide-menu ul {
+    /* margin-top: 10px; */
+    text-align: center;
+  }
+
+  .slide-menu ul li.li_text {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+  }
+
+  .slide-menu ul li.li_text:hover {
+    color: blue;
+  }
+
+  .slide-menu ul li.li_text::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: blue;
+    transition: width 0.5s ease;
+  }
+
+  .slide-menu ul li.li_text:hover::after {
+    width: 100%;
+  }
+
+
+
+  .buy_tickets {
+    position: fixed; /* 要素を画面に固定 */
+    right: 0px; /* 画面の右からの距離 */
+    top: 85px; /* 画面の上からの距離（必要に応じて調整） */
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: red;
+    padding: 15px;
+    border: 1px solid red;
+    cursor: pointer;
+    z-index: 2000; 
+    /* z-index: 2000; 
+    transition: opacity 0.3s ease; スムーズな変化 */
+}
+
+.buy_tickets:hover {
+  opacity: 0.4; /* 色を薄くする */
+}
+
+    /* ENDハンバーガーメニューEND */
+
+.main {
+    max-width: 800px;
+    /* height: 2000px; */
+    background-color: black;
+    /* text-align: center; */
+    margin: 5px auto;
+    margin-bottom: 0;
+    /* border-left: 1px solid;
+    border-right: 1px solid; */
+}
+
+.scroll_text {
+	overflow: hidden;
+  padding-top: 20px;
+}
+
+.scroll_text span{
+	display: inline-block;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    /* text-shadow: 3px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+.scroll_text2 {
+	overflow: hidden;
+  padding-top: 10px;
+}
+
+.scroll_text2 span{
+	display: inline-block;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    /* text-shadow: 3px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px); /* 少し下にずらす */
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0); /* 元の位置に戻す */
+  }
+}
+
+@keyframes fadeInForSongs {
+  from {
+      opacity: 0;
+      transform: translateY(0px); /* 少し下にずらす */
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0); /* 元の位置に戻す */
+  }
+}
+
+.first_content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./image/top_back.png');
+  background-size: cover;
+  opacity: 0; /* 初期状態は透明 */
+  animation: fadeIn 10s ease-out forwards;
+  background-repeat: repeat;
+  /* animation-delay: 3s;  */
+  /* z-index: 1; */
+}
+
+.first_content {
+  position: relative;
+  margin-top: -10px;
+  height: 100%;
+  /* z-index: 2; */
+}
+
+.release_day {
+  position: relative;
+  text-align: center;
+}
+
+.release_day img {
+  width: 100%;
+}
+
+.release_day_under {
+  position: relative;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.release_day_under img {
+  width: 100%;
+}
+
+.logo1 img {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  padding-top: -100px
+}
+
+.logo1 img {
+  opacity: 0; /* 初期状態は透明 */
+  animation: fadeIn 20s ease-out forwards; /* 3秒でふわっと表示 */
+  animation-delay: 0s; /* すぐに表示されるように */
+}
+
+.countdown {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+  text-shadow: 1px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red;
+  text-align: left;
+  position: relative;
+  /* z-index: 98; */
+  /* z-index: 3; */
+}
+
+.believe {
+  color: white;
+  font-size: 24px;
+  position: relative;
+  text-align: center;
+  /* text-shadow: 2px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.yes_no {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 150px 0 150px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.yes {
+  color: red;
+  font-size: 30px;
+  /* text-shadow: 3px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+.no {
+  color: red;
+  font-size: 30px;
+  /* text-shadow: 3px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+.for_img {
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-top: 20px;
+}
+
+.moreru_gif {
+  top: 30px;
+  position:absolute;
+  cursor: pointer;
+  /* z-index: 100; */
+}
+
+.moreru_gif img {
+  z-index: 100;
+}
+
+.moreru_gif2 {
+  top: 150px;
+  position:absolute;
+  cursor: pointer;
+  left: 300px;
+  /* display: none; */
+  /* z-index: 99; */
+}
+
+.moreru_gif2 img {
+  z-index: 99;
+  /* opacity: 0.7; */
+  /* width: 180%; */
+}
+
+.moreru_gif3 {
+  top: 90px;
+  position:absolute;
+  /* cursor: pointer; */
+  left: 500px;
+  
+}
+
+.moreru_gif3 img {
+  width: 250px;
+  height: 250px;
+}
+
+.moreru_gif_link {
+  top: 280px;
+  position:absolute;
+  /* cursor: pointer; */
+  left: 20px;
+  
+}
+
+.moreru_gif_link img {
+  width: 200px;
+  height: 200px;
+}
+
+.moreru_new {
+  position: relative;
+  display: none;
+}
+
+.moreru_gif4 {
+  position: absolute;
+  top: 0px;
+  width: 21px;
+  
+  max-width: 800px;
+  right:780px;
+  opacity: 1;
+  z-index: 60;
+  /* aspect-ratio: 16 / 9; 16:9 のアスペクト比を維持 */
+}
+
+.moreru_gif4 img {
+  width: 800px;
+  overflow-y: hidden;
+}
+
+.morekun {
+  position: absolute;
+  top: 600px;
+  padding-bottom: 60px;
+  text-align: center;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: block;
+}
+
+@media (max-width: 767px) {
+
+  .release_day {
+    padding-top: 10px;
+  }
+
+  .moreru_gif_link {
+    top: 250px;
+    position:absolute;
+    /* cursor: pointer; */
+    left: 20px;
+    
+  }
+  
+  .moreru_gif_link img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .moreru_gif4 {
+    top: 30px;
+    width: 30px;
+    right:350px;
+  }
+  
+  .moreru_gif4 img {
+    width: 390px;
+  }
+
+  .morekun {
+    top: 460px
+  }
+}
+
+.album_title  {
+  margin-top: 10px;
+  color: white;
+  font-size: 38px;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  /* text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white; */
+}
+
+.album_title_sp  {
+  margin-top: 10px;
+  color: white;
+  font-size: 38px;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+  /* text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white; */
+}
+
+.song_title {
+  color: white;
+  font-size: 24px;
+  position: relative;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.song_number {
+  color: white;
+}
+
+.click_area {
+  margin-top: 70px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-left: 30px;
+  padding-bottom: 0px;
+}
+
+.click_area_logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.click_area_jake {
+  display: flex;
+  flex-direction: column;
+}
+
+.click1,.click2 {
+  color: red;
+}
+
+.logo_click {
+  cursor: pointer;
+}
+
+.jake_click {
+  cursor: pointer;
+}
+
+.jake_click img {
+  width: 90%;
+}
+
+.morekun img {
+  cursor: pointer;
+  width: 50%;
+}
+
+@media (max-width: 767px) {
+
+  .album_title  {
+    display: none;
+  }
+  
+  .album_title_sp  {
+    font-size: 28px;
+    display: block;
+    /* text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white; */
+  }
+
+  .song_title {
+    font-size: 16px;
+    padding-bottom: 20px;
+    white-space: nowrap;
+  }
+
+  .believe {
+    font-size: 20px;
+    margin-bottom: initial;
+  }
+
+  .yes_no {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px 0 20px;
+  }
+
+  .no {
+    margin-top: 20px;
+  }
+  
+  .moreru_gif2 img {
+    z-index: 99;
+    width: 500px;
+    display: none;
+  }
+
+  .moreru_gif3 {
+    top: 130px;
+    left: 300px;
+  }
+
+  .moreru_gif3 img{
+   
+    width: 90%;
+    height: 90%;
+  }
+
+  .moreru_new {
+    display: block;
+    position: absolute;
+    top: 230px;
+    left: 130px;
+  }
+
+  .moreru_new img {
+    width: 90%;
+  }
+
+  .click_area {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  .logo_click img {
+    width: 100%;
+  }
+
+  .jake_click img {
+    width: 100%;
+  }
+}
+
+
+.second_content {
+  background-color: black;
+  background-image: url('./image/evilspa_back5.jpg');
+  background-repeat: no-repeat; /* 画像の繰り返しを無効にする */
+  background-size: 100% auto;
+    /* background-position: center; */
+  /* background-size: cover; 
+   background-position: top ;  */
+  margin-top: 80px;
+  /* display: none; */
+}
+
+
+@media (max-width: 767px) {
+
+  .second_content {
+    background-image: url('./image/evilspa_back9.jpg');
+  }
+
+  .songs_bands {
+    margin-top: initial;
+  }
+}
+
+.poets {
+  color: #ff0000;
+  text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black;
+  padding-top: 10px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1; /* 行間を詰める */
+  font-weight: bold;
+}
+
+.content_text {
+  color: #ff0000;
+  padding-top: 500px;
+  padding-bottom: 800px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.third_content {
+  background-image: url('./image/3.jpg');
+  background-repeat: no-repeat; /* 画像の繰り返しを無効にする */
+  background-size: 100% auto;
+  /* display: none; */
+    /* background-position: center; 画像を中央に配置 */
+  /* background-size: cover; */
+  /* background-position: top ;  */
+  /* height: 844px; */
+  /* width: 800px; */
+  margin-top: 80px;
+}
+
+.question {
+  color: #ff0000;
+  padding-top: 300px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  /* text-shadow: 1px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+.sanka_link {
+  padding: 200px 150px 800px 150px;
+  display: flex;
+  color: #ff0000;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: bold;
+  /* text-shadow: 1px 0 0 red, -1px 0 0 red, 0 1px 0 red, 0 -1px 0 red; */
+}
+
+.null_main {
+  max-width: 800px;
+  background-color: #050505;
+  margin: 5px auto;
+  margin-bottom: 0;
+}
+
+.no_content {
+  background-color: #050505;
+  margin-top: 80px;
+}
+
+.no_img img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding-top: -100px;
+  opacity: 0; /* 初期状態は透明 */
+  animation: fadeIn 3s ease-out forwards; /* 3秒でふわっと表示 */
+  animation-delay: 0s; /* すぐに表示されるように */
+}
+
+.mobile_audio {
+  display: none;
+}
+
+.mobile_button {
+  display: none;
+}
+
+@media (max-width: 767px) {
+    .question {
+      font-size: 20px;
+    }
+    .sanka_link {
+        padding: 100px 50px 600px 50px;
+        font-size: 18px;
+    }
+    .mobile_audio {
+      display: initial;
+    }
+    .mobile_button {
+      display: initial;
+    }
+    .pc_audio {
+      display: none;
+    }
+    .mobile_button {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      opacity: 0; 
+      animation: fadeIn 3s ease-out forwards; 
+      animation-delay: 0s; 
+    }
+}
+
+
+
+
+
+.youtube iframe {
+  position: relative;
+  aspect-ratio:9 /16; /* ビデオの横/縦比 */
+}
+
+.youtube {
+  padding: 50px 0 50px 0;
+  display: block;
+  text-align: center;
+}
+
+.youtube iframe {
+  display: block;
+  width: 100%; /* ビデオ横幅を調整 */
+  max-width: 800px; /* 最大幅を800pxに制限 */
+  aspect-ratio: 16 / 9; /* 16:9 のアスペクト比を維持 */
+  margin: 0 auto; /* 中央揃え */
+  border: 0;
+}
+
+.youtube .video {
+  height: 450px;
+  width: 800px;
+  margin: 0 auto;
+  overflow: visible;
+  padding-bottom: 0;
+  width: 100%;   /* ビデオ横幅 */
+}
+
+
+@media (max-width: 767px) {
+  .youtube iframe {
+    display: block;
+    width: 100%; /* ビデオ横幅を調整 */
+    max-width: 800px; /* 最大幅を800pxに制限 */
+    aspect-ratio: 16 / 9; /* 16:9 のアスペクト比を維持 */
+    margin: 0 auto; /* 中央揃え */
+    border: 0;
+  }
+}
