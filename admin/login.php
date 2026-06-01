@@ -7,10 +7,12 @@ if (admin_is_logged_in()) {
 }
 
 $errorMessage = '';
+$submittedUsername = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? (string) $_POST['password'] : '';
+    $submittedUsername = $username;
 
     if (admin_attempt_login($username, $password)) {
         redirect_to(app_path('admin/index.php'));
@@ -81,18 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($errorMessage !== ''): ?>
             <div class="error"><?php echo h($errorMessage); ?></div>
         <?php endif; ?>
-        <form method="post">
+        <form method="post" autocomplete="on">
             <label for="username">Username</label>
-            <input id="username" type="text" name="username" value="">
+            <input id="username" type="text" name="username" value="<?php echo h($submittedUsername); ?>" autocomplete="username" autocapitalize="none" spellcheck="false">
 
             <label for="password">Password</label>
-            <input id="password" type="password" name="password" value="">
+            <input id="password" type="password" name="password" value="" autocomplete="current-password">
 
             <button type="submit">Login</button>
         </form>
-        <div class="note">
-            初期ユーザー名は admin、初期パスワードは moreru_local_admin です。運用前に config.php 側で変更してください。
-        </div>
     </div>
 </body>
 </html>
