@@ -144,13 +144,13 @@ function default_live_body_html()
 
 function fetch_live_entries($includeDeleted, $limit = null, $offset = 0)
 {
-    $sql = 'SELECT id, live_pict, body_html, created_at, updated_at, deleted_at FROM live_schedules';
+    $sql = 'SELECT id, sort_order, live_pict, body_html, created_at, updated_at, deleted_at FROM live_schedules';
 
     if (!$includeDeleted) {
         $sql .= ' WHERE deleted_at IS NULL';
     }
 
-    $sql .= ' ORDER BY id DESC';
+    $sql .= ' ORDER BY sort_order ASC, id DESC';
 
     if ($limit !== null) {
         $limit = max(1, (int) $limit);
@@ -256,6 +256,22 @@ function build_page_url($page)
 function get_live_media_extension($fileName)
 {
     return strtolower(pathinfo((string) $fileName, PATHINFO_EXTENSION));
+}
+
+function get_next_live_sort_order()
+{
+    $result = db_connection()->query('SELECT MAX(sort_order) AS max_sort_order FROM live_schedules');
+
+    if ($result instanceof mysqli_result) {
+        $row = $result->fetch_assoc();
+        $result->free();
+
+        if (isset($row['max_sort_order'])) {
+            return (int) $row['max_sort_order'] + 1;
+        }
+    }
+
+    return 1;
 }
 
 function is_live_video_file($fileName)
@@ -388,18 +404,19 @@ function save_uploaded_live_image($file)
 function find_live_entry($id)
 {
     $statement = db_connection()->prepare(
-        'SELECT id, live_pict, body_html, created_at, updated_at, deleted_at FROM live_schedules WHERE id = ? LIMIT 1'
+        'SELECT id, sort_order, live_pict, body_html, created_at, updated_at, deleted_at FROM live_schedules WHERE id = ? LIMIT 1'
     );
 
     $statement->bind_param('i', $id);
     $statement->execute();
-    $statement->bind_result($rowId, $livePict, $bodyHtml, $createdAt, $updatedAt, $deletedAt);
+    $statement->bind_result($rowId, $sortOrder, $livePict, $bodyHtml, $createdAt, $updatedAt, $deletedAt);
 
     $row = null;
 
     if ($statement->fetch()) {
         $row = array(
             'id' => $rowId,
+            'sort_order' => $sortOrder,
             'live_pict' => $livePict,
             'body_html' => $bodyHtml,
             'created_at' => $createdAt,
@@ -416,10 +433,11 @@ function find_live_entry($id)
 function insert_live_entry($livePict, $bodyHtml)
 {
     $now = date('Y-m-d H:i:s');
+    $sortOrder = get_next_live_sort_order();
     $statement = db_connection()->prepare(
-        'INSERT INTO live_schedules (live_pict, body_html, created_at, updated_at, deleted_at) VALUES (?, ?, ?, ?, NULL)'
+        'INSERT INTO live_schedules (sort_order, live_pict, body_html, created_at, updated_at, deleted_at) VALUES (?, ?, ?, ?, ?, NULL)'
     );
-    $statement->bind_param('ssss', $livePict, $bodyHtml, $now, $now);
+    $statement->bind_param('issss', $sortOrder, $livePict, $bodyHtml, $now, $now);
     $success = $statement->execute();
     $statement->close();
 
@@ -448,6 +466,79 @@ function soft_delete_live_entry($id)
     $statement->bind_param('ssi', $now, $now, $id);
     $success = $statement->execute();
     $statement->close();
+
+    return $success;
+}
+
+function update_live_entry_sort_orders($orderedIds)
+{
+    if (!is_array($orderedIds) || empty($orderedIds)) {
+        return false;
+    }
+
+    $normalizedIds = array();
+
+    foreach ($orderedIds as $orderedId) {
+        $orderedId = (int) $orderedId;
+
+        if ($orderedId > 0 && !in_array($orderedId, $normalizedIds, true)) {
+            $normalizedIds[] = $orderedId;
+        }
+    }
+
+    if (empty($normalizedIds)) {
+        return false;
+    }
+
+    $result = db_connection()->query('SELECT id FROM live_schedules WHERE deleted_at IS NULL');
+    $existingIds = array();
+
+    if ($result instanceof mysqli_result) {
+        while ($row = $result->fetch_assoc()) {
+            $existingIds[] = (int) $row['id'];
+        }
+
+        $result->free();
+    }
+
+    sort($normalizedIds);
+    sort($existingIds);
+
+    if ($normalizedIds !== $existingIds) {
+        return false;
+    }
+
+    $connection = db_connection();
+    $statement = $connection->prepare('UPDATE live_schedules SET sort_order = ?, updated_at = ? WHERE id = ? AND deleted_at IS NULL');
+
+    if (!$statement) {
+        return false;
+    }
+
+    $connection->autocommit(false);
+    $now = date('Y-m-d H:i:s');
+    $success = true;
+
+    foreach ($orderedIds as $index => $orderedId) {
+        $sortOrder = $index + 1;
+        $rowId = (int) $orderedId;
+        $statement->bind_param('isi', $sortOrder, $now, $rowId);
+
+        if (!$statement->execute()) {
+            $success = false;
+            break;
+        }
+    }
+
+    $statement->close();
+
+    if ($success) {
+        $connection->commit();
+    } else {
+        $connection->rollback();
+    }
+
+    $connection->autocommit(true);
 
     return $success;
 }

@@ -5,6 +5,7 @@ require_once dirname(__DIR__) . '/includes/functions.php';
 admin_require_login();
 
 $settingErrors = array();
+$reorderMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['settings_form'])) {
     $csrfToken = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
@@ -24,8 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['settings_form'])) {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reorder_form'])) {
+    $csrfToken = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
+    $orderedIds = isset($_POST['ordered_ids']) ? $_POST['ordered_ids'] : array();
+
+    if (!verify_csrf_token($csrfToken)) {
+        $reorderMessage = '並び順の保存に失敗しました。ページを再読み込みしてからやり直してください。';
+    } elseif (!update_live_entry_sort_orders($orderedIds)) {
+        $reorderMessage = '並び順を保存できませんでした。';
+    } else {
+        redirect_to(app_path('admin/index.php?reordered=1'));
+    }
+}
+
 $items = fetch_live_entries(false);
 $liveSchedulePerPage = get_live_schedule_per_page();
+
+if (isset($_GET['reordered']) && $_GET['reordered'] === '1') {
+    $reorderMessage = '並び順を保存しました。';
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -132,6 +150,34 @@ $liveSchedulePerPage = get_live_schedule_per_page();
             margin-bottom: 12px;
             color: #c62828;
         }
+
+        .message {
+            margin-bottom: 12px;
+            color: #1b5e20;
+        }
+
+        .sort-help {
+            margin-bottom: 16px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .drag-handle {
+            width: 36px;
+            text-align: center;
+            cursor: move;
+            color: #555;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .sortable-row.is-dragging {
+            opacity: 0.45;
+        }
+
+        .sortable-row td {
+            background: #fff;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +192,9 @@ $liveSchedulePerPage = get_live_schedule_per_page();
 
     <div class="settings-box">
         <h2>公開ページ設定</h2>
+        <?php if ($reorderMessage !== ''): ?>
+            <div class="<?php echo strpos($reorderMessage, '失敗') !== false ? 'error' : 'message'; ?>"><?php echo h($reorderMessage); ?></div>
+        <?php endif; ?>
         <?php foreach ($settingErrors as $error): ?>
             <div class="error"><?php echo h($error); ?></div>
         <?php endforeach; ?>
@@ -158,9 +207,18 @@ $liveSchedulePerPage = get_live_schedule_per_page();
         </form>
     </div>
 
+    <div class="sort-help">一覧の行をドラッグすると、その順番で自動保存されます。</div>
+
+    <form method="post" id="reorderForm">
+        <input type="hidden" name="reorder_form" value="1">
+        <input type="hidden" name="csrf_token" value="<?php echo h(csrf_token()); ?>">
+        <div id="reorderInputs"></div>
+    </form>
+
     <table>
         <thead>
             <tr>
+                <th>Sort</th>
                 <th>ID</th>
                 <th>Image</th>
                 <th>Body Preview</th>
@@ -168,14 +226,15 @@ $liveSchedulePerPage = get_live_schedule_per_page();
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="sortableTableBody">
             <?php if (empty($items)): ?>
                 <tr>
-                    <td colspan="5">データがありません。</td>
+                    <td colspan="6">データがありません。</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($items as $item): ?>
-                    <tr>
+                    <tr class="sortable-row" data-live-id="<?php echo (int) $item['id']; ?>" draggable="true">
+                        <td class="drag-handle" title="ドラッグして並び替え">&#8645;</td>
                         <td><?php echo (int) $item['id']; ?></td>
                         <td>
                             <?php if ($item['live_pict'] !== ''): ?><?php echo h($item['live_pict']); ?>
@@ -199,5 +258,121 @@ $liveSchedulePerPage = get_live_schedule_per_page();
             <?php endif; ?>
         </tbody>
     </table>
+
+    <script>
+        (function () {
+            var tbody = document.getElementById('sortableTableBody');
+            var reorderForm = document.getElementById('reorderForm');
+            var reorderInputs = document.getElementById('reorderInputs');
+            var draggedRow = null;
+            var dragStartOrder = '';
+            var isSubmitting = false;
+
+            if (!tbody || !reorderForm || !reorderInputs) {
+                return;
+            }
+
+            function getRows() {
+                return tbody.querySelectorAll('tr.sortable-row');
+            }
+
+            function serializeOrder() {
+                var rows = getRows();
+                var ids = [];
+                var index = 0;
+
+                for (index = 0; index < rows.length; index++) {
+                    ids.push(rows[index].getAttribute('data-live-id'));
+                }
+
+                return ids.join(',');
+            }
+
+            function rebuildInputs() {
+                var rows = getRows();
+                var html = '';
+                var index = 0;
+
+                for (index = 0; index < rows.length; index++) {
+                    html += '<input type="hidden" name="ordered_ids[]" value="' + rows[index].getAttribute('data-live-id') + '">';
+                }
+
+                reorderInputs.innerHTML = html;
+            }
+
+            function getDragAfterElement(container, clientY) {
+                var rows = container.querySelectorAll('tr.sortable-row:not(.is-dragging)');
+                var closest = null;
+                var closestOffset = Number.NEGATIVE_INFINITY;
+                var index = 0;
+
+                for (index = 0; index < rows.length; index++) {
+                    var box = rows[index].getBoundingClientRect();
+                    var offset = clientY - box.top - (box.height / 2);
+
+                    if (offset < 0 && offset > closestOffset) {
+                        closestOffset = offset;
+                        closest = rows[index];
+                    }
+                }
+
+                return closest;
+            }
+
+            function submitOrderIfChanged() {
+                var currentOrder = serializeOrder();
+
+                if (isSubmitting || currentOrder === '' || currentOrder === dragStartOrder) {
+                    return;
+                }
+
+                isSubmitting = true;
+                rebuildInputs();
+                reorderForm.submit();
+            }
+
+            tbody.addEventListener('dragstart', function (event) {
+                var row = event.target.closest('tr.sortable-row');
+
+                if (!row) {
+                    return;
+                }
+
+                draggedRow = row;
+                dragStartOrder = serializeOrder();
+                row.classList.add('is-dragging');
+                event.dataTransfer.effectAllowed = 'move';
+            });
+
+            tbody.addEventListener('dragover', function (event) {
+                var afterElement;
+
+                if (!draggedRow) {
+                    return;
+                }
+
+                event.preventDefault();
+                afterElement = getDragAfterElement(tbody, event.clientY);
+
+                if (afterElement === null) {
+                    tbody.appendChild(draggedRow);
+                } else if (afterElement !== draggedRow) {
+                    tbody.insertBefore(draggedRow, afterElement);
+                }
+            });
+
+            tbody.addEventListener('dragend', function () {
+                if (!draggedRow) {
+                    return;
+                }
+
+                draggedRow.classList.remove('is-dragging');
+                draggedRow = null;
+                submitOrderIfChanged();
+            });
+
+            rebuildInputs();
+        })();
+    </script>
 </body>
 </html>

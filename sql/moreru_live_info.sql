@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS live_schedules (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    sort_order INT UNSIGNED NOT NULL DEFAULT 0,
     live_pict VARCHAR(255) NOT NULL DEFAULT '',
     body_html MEDIUMTEXT NOT NULL,
     created_at DATETIME NOT NULL,
@@ -7,7 +8,8 @@ CREATE TABLE IF NOT EXISTS live_schedules (
     deleted_at DATETIME DEFAULT NULL,
     PRIMARY KEY (id),
     KEY idx_deleted_at (deleted_at),
-    KEY idx_created_at (created_at)
+    KEY idx_created_at (created_at),
+    KEY idx_deleted_sort_order (deleted_at, sort_order, id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS site_settings (
