@@ -150,7 +150,7 @@ function fetch_live_entries($includeDeleted, $limit = null, $offset = 0)
         $sql .= ' WHERE deleted_at IS NULL';
     }
 
-    $sql .= ' ORDER BY sort_order ASC, id DESC';
+    $sql .= ' ORDER BY sort_order DESC, id DESC';
 
     if ($limit !== null) {
         $limit = max(1, (int) $limit);
@@ -519,8 +519,10 @@ function update_live_entry_sort_orders($orderedIds)
     $now = date('Y-m-d H:i:s');
     $success = true;
 
+    $maxSortOrder = count($orderedIds);
+
     foreach ($orderedIds as $index => $orderedId) {
-        $sortOrder = $index + 1;
+        $sortOrder = $maxSortOrder - $index;
         $rowId = (int) $orderedId;
         $statement->bind_param('isi', $sortOrder, $now, $rowId);
 
